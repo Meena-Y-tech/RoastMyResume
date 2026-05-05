@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoastMyResume - Get Your Resume Roasted by AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="gradient-bg"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <span class="gradient-text">Roast My Resume</span>
+                </h1>
+                <p class="subtitle">Get brutal AI feedback on your resume in seconds</p>
+            </div>
+            <div class="flame-icon">🔥</div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="input-tabs">
+                    <button class="tab-btn active" data-tab="paste">
+                        <span class="tab-icon">✍️</span>
+                        Paste Resume
+                    </button>
+                    <button class="tab-btn" data-tab="upload">
+                        <span class="tab-icon">📄</span>
+                        Upload File
+                    </button>
+                </div>
+
+                <!-- Paste Tab -->
+                <div class="tab-content active" id="paste">
+                    <textarea 
+                        id="resumeText" 
+                        class="resume-input" 
+                        placeholder="Paste your resume here... Be honest, the AI won't judge (much 😏)"
+                    ></textarea>
+                </div>
+
+                <!-- Upload Tab -->
+                <div class="tab-content" id="upload">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">📥</div>
+                        <h3>Drag and drop your resume</h3>
+                        <p>or</p>
+                        <label for="fileInput" class="upload-btn">
+                            Choose File
+                        </label>
+                        <input 
+                            type="file" 
+                            id="fileInput" 
+                            accept=".pdf,.doc,.docx,.txt" 
+                            hidden
+                        >
+                        <p class="upload-hint">Supports PDF, DOC, DOCX, TXT</p>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="button-group">
+                    <button class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Roast My Resume</span>
+                        <span class="btn-icon">🔥</span>
+                    </button>
+                    <p class="loading-text" id="loadingText" style="display: none;">
+                        <span class="spinner"></span> Roasting your resume...
+                    </p>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-container">
+                    <!-- Score Card -->
+                    <div class="score-card">
+                        <div class="score-label">Resume Score</div>
+                        <div class="score-number" id="scoreValue">0</div>
+                        <div class="score-bar">
+                            <div class="score-fill" id="scoreFill"></div>
+                        </div>
+                        <div class="score-text" id="scoreText">Not yet roasted</div>
+                    </div>
+
+                    <!-- Roast Section -->
+                    <div class="roast-box">
+                        <h2 class="roast-title">
+                            <span class="flame">🔥</span> The Roast <span class="flame">🔥</span>
+                        </h2>
+                        <p class="roast-content" id="roastContent">
+                            Your resume is waiting to be roasted...
+                        </p>
+                    </div>
+
+                    <!-- Fixes Section -->
+                    <div class="fixes-box">
+                        <h2 class="fixes-title">
+                            <span class="sparkle">✨</span> Quick Fixes
+                        </h2>
+                        <ul class="fixes-list" id="fixesList">
+                            <li>Waiting for analysis...</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tips Section -->
+                    <div class="tips-box">
+                        <h2 class="tips-title">
+                            <span class="bulb">💡</span> Pro Tips
+                        </h2>
+                        <ul class="tips-list" id="tipsList">
+                            <li>Loading recommendations...</li>
+                        </ul>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="secondary-btn" id="resetBtn">
+                            Try Another Resume
+                        </button>
+                        <button class="tertiary-btn" id="copyBtn">
+                            Copy Results
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState">
+                <div class="empty-icon">📋</div>
+                <p>Your roasted feedback will appear here</p>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Built with <span class="heart">❤️</span> using Claude API | Powered by Anthropic</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

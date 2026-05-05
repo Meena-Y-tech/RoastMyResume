@@ -1,0 +1,929 @@
+/* ============================================
+   RoastMyResume - Modern Dark Theme
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colors */
+    --bg-dark: #0a0e27;
+    --bg-secondary: #1a1f3a;
+    --bg-tertiary: #252d4a;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b9d1;
+    --accent-primary: #ff6b6b;
+    --accent-secondary: #ffd93d;
+    --accent-tertiary: #6bcf7f;
+    --border-color: #3a4563;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #ff6b6b, #ff8e72);
+    --gradient-secondary: linear-gradient(135deg, #ffd93d, #ffed4e);
+    --gradient-accent: linear-gradient(135deg, #6bcf7f, #4ade80);
+}
+
+/* ============================================
+   Global Styles
+   ============================================ */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Animated gradient background */
+.gradient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 217, 61, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(107, 207, 127, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background: radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(255, 217, 61, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 20%, rgba(107, 207, 127, 0.1) 0%, transparent 50%);
+    }
+    50% {
+        background: radial-gradient(circle at 30% 30%, rgba(255, 107, 107, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 70%, rgba(255, 217, 61, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 60% 40%, rgba(107, 207, 127, 0.1) 0%, transparent 50%);
+    }
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================
+   Header
+   ============================================ */
+
+.header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.header-content {
+    flex: 1;
+    animation: slideDown 0.8s ease-out;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -2px;
+    line-height: 1.1;
+}
+
+.gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.6));
+    }
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    animation: slideUp 0.8s ease-out 0.2s both;
+}
+
+.flame-icon {
+    font-size: 4rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: scale(1) translateY(0);
+    }
+    50% {
+        transform: scale(1.1) translateY(-10px);
+    }
+}
+
+/* ============================================
+   Main Content
+   ============================================ */
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   Input Section
+   ============================================ */
+
+.input-section {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    animation: slideUp 0.8s ease-out 0.3s both;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Tabs */
+.input-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+}
+
+.tab-btn.active {
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-primary);
+}
+
+.tab-icon {
+    font-size: 1.2rem;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Resume Input */
+.resume-input {
+    width: 100%;
+    height: 280px;
+    padding: 20px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    resize: vertical;
+    transition: all 0.3s ease;
+    outline: none;
+    margin-bottom: 20px;
+}
+
+.resume-input:focus {
+    border-color: var(--accent-primary);
+    background: rgba(255, 107, 107, 0.05);
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.resume-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+/* Upload Area */
+.upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 50px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: rgba(255, 107, 107, 0.02);
+    margin-bottom: 20px;
+}
+
+.upload-area:hover {
+    border-color: var(--accent-primary);
+    background: rgba(255, 107, 107, 0.08);
+    transform: translateY(-4px);
+}
+
+.upload-area.drag-over {
+    border-color: var(--accent-primary);
+    background: rgba(255, 107, 107, 0.15);
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.2);
+}
+
+.upload-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.upload-area h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.upload-area p {
+    color: var(--text-secondary);
+    margin: 10px 0;
+}
+
+.upload-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--gradient-primary);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px 0;
+}
+
+.upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+}
+
+.upload-hint {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 15px;
+}
+
+/* Button Group */
+.button-group {
+    position: relative;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 16px 24px;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 8px 24px rgba(255, 107, 107, 0.3);
+}
+
+.submit-btn:hover:not(:disabled) {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(255, 107, 107, 0.5);
+}
+
+.submit-btn:active:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-text {
+    font-size: 1rem;
+}
+
+.btn-icon {
+    font-size: 1.3rem;
+    animation: rotate 2s linear infinite;
+}
+
+.submit-btn:hover .btn-icon,
+.submit-btn:focus .btn-icon {
+    animation: rotate 0.6s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Loading State */
+.loading-text {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--accent-primary);
+    margin-top: 15px;
+    font-weight: 500;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 107, 107, 0.3);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   Results Section
+   ============================================ */
+
+.results-section {
+    animation: slideUp 0.8s ease-out 0.4s both;
+}
+
+.results-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Score Card */
+.score-card {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-sm);
+    animation: scoreCardAppear 0.8s ease-out;
+}
+
+@keyframes scoreCardAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.score-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.score-number {
+    font-size: 5rem;
+    font-weight: 900;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    line-height: 1;
+}
+
+.score-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--bg-tertiary);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+}
+
+.score-fill {
+    height: 100%;
+    background: var(--gradient-primary);
+    border-radius: 10px;
+    width: 0%;
+    animation: fillScore 1.5s ease-out forwards;
+}
+
+@keyframes fillScore {
+    from {
+        width: 0%;
+    }
+    to {
+        width: var(--score-percent, 0%);
+    }
+}
+
+.score-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Roast Box */
+.roast-box {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-sm);
+    animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.roast-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.flame {
+    display: inline-block;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.roast-box .flame {
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.roast-box .flame:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.roast-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    font-weight: 400;
+    text-align: justify;
+}
+
+/* Fixes Box */
+.fixes-box {
+    background: linear-gradient(135deg, rgba(107, 207, 127, 0.1) 0%, rgba(107, 207, 127, 0.05) 100%);
+    border: 1px solid rgba(107, 207, 127, 0.3);
+    border-radius: 16px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.fixes-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--accent-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sparkle {
+    display: inline-block;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.fixes-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.fixes-list li {
+    padding: 12px 16px;
+    background: rgba(107, 207, 127, 0.1);
+    border-left: 4px solid var(--accent-tertiary);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    animation: listItemSlide 0.5s ease-out forwards;
+    animation-delay: var(--delay, 0s);
+}
+
+.fixes-list li:hover {
+    background: rgba(107, 207, 127, 0.2);
+    transform: translateX(8px);
+}
+
+@keyframes listItemSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Tips Box */
+.tips-box {
+    background: linear-gradient(135deg, rgba(255, 217, 61, 0.1) 0%, rgba(255, 217, 61, 0.05) 100%);
+    border: 1px solid rgba(255, 217, 61, 0.3);
+    border-radius: 16px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    animation: fadeInUp 0.8s ease-out 0.7s both;
+}
+
+.tips-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--accent-secondary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bulb {
+    display: inline-block;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.tips-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.tips-list li {
+    padding: 12px 16px;
+    background: rgba(255, 217, 61, 0.1);
+    border-left: 4px solid var(--accent-secondary);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    animation: listItemSlide 0.5s ease-out forwards;
+    animation-delay: var(--delay, 0s);
+}
+
+.tips-list li:hover {
+    background: rgba(255, 217, 61, 0.2);
+    transform: translateX(8px);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.secondary-btn,
+.tertiary-btn {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+.secondary-btn {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.secondary-btn:hover {
+    border-color: var(--accent-primary);
+    background: rgba(255, 107, 107, 0.1);
+    transform: translateY(-2px);
+}
+
+.tertiary-btn {
+    background: transparent;
+    color: var(--accent-tertiary);
+    border: 1px solid var(--accent-tertiary);
+}
+
+.tertiary-btn:hover {
+    background: rgba(107, 207, 127, 0.1);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   Empty State
+   ============================================ */
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.empty-state.hidden {
+    display: none;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-top: 60px;
+    border-top: 1px solid var(--border-color);
+    animation: slideUp 0.8s ease-out 0.5s both;
+}
+
+.heart {
+    display: inline-block;
+    animation: heartbeat 1.2s ease-in-out infinite;
+    margin: 0 4px;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1);
+    }
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .header {
+        flex-direction: column;
+        padding: 40px 20px 30px;
+        gap: 10px;
+    }
+
+    .flame-icon {
+        font-size: 3rem;
+    }
+
+    .input-section {
+        padding: 20px;
+    }
+
+    .resume-input {
+        height: 220px;
+    }
+
+    .score-card {
+        padding: 20px;
+    }
+
+    .score-number {
+        font-size: 3.5rem;
+    }
+
+    .roast-box,
+    .fixes-box,
+    .tips-box {
+        padding: 20px;
+    }
+
+    .roast-title,
+    .fixes-title,
+    .tips-title {
+        font-size: 1.2rem;
+    }
+
+    .action-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .results-container {
+        gap: 15px;
+    }
+
+    .upload-area {
+        padding: 30px 15px;
+    }
+
+    .upload-icon {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+    }
+
+    .input-tabs {
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .submit-btn {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .score-number {
+        font-size: 2.5rem;
+    }
+
+    .roast-content {
+        font-size: 0.95rem;
+    }
+
+    .upload-area h3 {
+        font-size: 1.1rem;
+    }
+
+    .footer {
+        font-size: 0.85rem;
+        padding: 30px 15px;
+    }
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+.hidden {
+    display: none !important;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+/* Smooth transitions */
+* {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
