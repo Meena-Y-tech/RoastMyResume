@@ -15,9 +15,7 @@ const emptyState = document.getElementById('emptyState');
 const resetBtn = document.getElementById('resetBtn');
 const copyBtn = document.getElementById('copyBtn');
 
-// Configuration
-const API_KEY = 'YOUR_CLAUDE_API_KEY';
-const API_URL = 'https://api.anthropic.com/v1/messages';
+
 
 // State
 let currentResumeContent = '';
@@ -145,50 +143,17 @@ async function triggerRoasting() {
    ============================================ */
 
 async function callClaudeAPI(resume) {
-    const prompt = `You are an expert career coach with 20 years of experience. 
-    
-Analyze the following resume and provide:
-1. A score from 0-100
-2. A witty but constructive "roast" (1-2 paragraphs) about what needs improvement
-3. A list of 5-6 specific fixes they should make
-4. A list of 5-6 pro tips for resume success
-
-Format your response as JSON with these keys: score, roast, fixes (array), tips (array)
-
-Resume:
-${resume}`;
-
-    const response = await fetch(API_URL, {
+    const response = await fetch('/api/roast', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': API_KEY,
-            'anthropic-version': '2023-06-01'
-        },
-        body: JSON.stringify({
-            model: 'claude-3-5-sonnet-20241022',
-            max_tokens: 1024,
-            messages: [{
-                role: 'user',
-                content: prompt
-            }]
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ resume })
     });
 
     if (!response.ok) {
         throw new Error('API request failed');
     }
 
-    const data = await response.json();
-    const content = data.content[0].text;
-
-    // Parse JSON from response
-    const jsonMatch = content.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) {
-        throw new Error('Could not parse API response');
-    }
-
-    currentResults = JSON.parse(jsonMatch[0]);
+    currentResults = await response.json();
 }
 
 /* ============================================
