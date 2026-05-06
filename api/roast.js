@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     }
 
     const prompt = `You are an expert career coach with 20 years of experience. 
-    
+
 Analyze the following resume and provide:
 1. A score from 0-100
 2. A witty but constructive "roast" (1-2 paragraphs) about what needs improvement
@@ -23,27 +23,28 @@ Format your response as JSON with these keys: score, roast, fixes (array), tips 
 Resume:
 ${resume}`;
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': process.env.CLAUDE_API_KEY,
-            'anthropic-version': '2023-06-01'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            model: 'claude-3-5-sonnet-20241022',
-            max_tokens: 1024,
-            messages: [{ role: 'user', content: prompt }]
+            contents: [{
+                parts: [{
+                    text: prompt
+                }]
+            }]
         })
     });
 
     if (!response.ok) {
-        return res.status(500).json({ error: 'Claude API request failed' });
+        return res.status(500).json({ error: 'Gemini API request failed' });
     }
 
     const data = await response.json();
-    const content = data.content[0].text;
+    const content = data.candidates[0].content.parts[0].text;
 
+    // Extract JSON from response
     const jsonMatch = content.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
         return res.status(500).json({ error: 'Could not parse response' });
